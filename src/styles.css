@@ -1,0 +1,35 @@
+*{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+body{margin:0;background:#f6f8fb;color:#0b1220}
+.topbar{background:#0f1724;color:white;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.topbar h1{margin:0;font-size:18px}
+.search input{padding:8px 10px;border-radius:6px;border:1px solid #e2e8f0}
+.container{display:flex;gap:20px;padding:20px}
+.left{flex:2}
+.right{flex:1;background:white;padding:12px;border-radius:8px;height:70vh;overflow:auto}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:white;padding:12px;border-radius:8px;box-shadow:0 1px 4px rgba(15,23,42,0.08)}
+.card-header{display:flex;gap:12px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:8px;background:#eef2ff;color:#3730a3;display:flex;align-items:center;justify-content:center;font-weight:700}
+.name{font-weight:700}
+.spec{font-size:13px;color:#475569}
+.card-body{margin-top:8px;font-size:14px;line-height:1.4}
+.card-actions{display:flex;gap:8px;margin-top:12px}
+.btn{background:#0f1724;color:white;padding:8px 10px;border-radius:6px;border:none;cursor:pointer}
+.btn.small{padding:6px 8px;font-size:13px}
+.btn.outline{background:white;border:1px solid #0f1724;color:#0f1724}
+.btn.ghost{background:transparent;border:0;color:#0f1724}
+.muted{color:#64748b;font-style:italic}
+.token-card{background:#fff3cd;padding:10px;border-radius:6px;margin-bottom:8px}
+.token-label{background:#0f1724;color:white;padding:3px 6px;border-radius:4px}
+.detail-pane{position:fixed;right:18px;top:80px;width:320px;background:white;padding:12px;border-radius:8px;box-shadow:0 6px 20px rgba(2,6,23,0.2)}
+.detail-actions{display:flex;gap:8px;margin-top:10px}
+.close{background:transparent;border:0;margin-top:8px;color:#94a3b8}
+.footer{padding:12px;text-align:center;color:#94a3b8;font-size:13px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:flex;align-items:center;justify-content:center}
+.modal{background:white;padding:16px;border-radius:8px;width:420px;max-width:95%}
+.modal-actions{display:flex;gap:8px;margin-top:12px}
+.pred{background:#ecfeff;padding:8px;border-radius:6px;margin-top:8px}
+.status-active{color:green}
+.status-on_leave{color:red}
+.status-break{color:orange}
+.status-emergency{color:red}
