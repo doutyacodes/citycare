@@ -1,28 +1,12 @@
+# React + Vite
 
-# Token MVP Demo (Frontend-only)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This is a frontend-only React + Vite demo of a token booking system for one hospital with 10 doctors.
-It simulates live token progression and lets you book tokens in three modes: Next, Time, or Specific Token Number.
+Currently, two official plugins are available:
 
-## Run locally
-1. Install dependencies
-```
-cd token-mvp-demo
-npm install
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-2. Run dev server
-```
-npm run dev
-```
+## Expanding the ESLint configuration
 
-3. Open the URL printed by Vite (usually http://localhost:5173)
-
-## Features
-- Search doctors
-- Simulated live token progression per doctor
-- Book Next / Book by Time / Book specific token
-- Cancel bookings from user panel
-- Doctor statuses: active / break / emergency / on_leave (data can be edited in src/data.js)
-
-This is a demo (frontend-only) and does not persist bookings. Use it to demo flows and UX.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
