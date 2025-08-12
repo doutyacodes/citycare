@@ -1,26 +1,13 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { hospitals, doctors } from "./data";
-import HospitalList from "./components/HospitalList";
-import HospitalDetail from "./components/HospitalDetail";
-import DoctorDetail from "./components/DoctorDetail";
+import HomePage from "./pages/HomePage";
+import HospitalDetailPage from "./pages/HospitalDetailPage";
+import DoctorDetailPage from "./pages/DoctorDetailPage";
+import BookingDetailsPage from "./pages/BookingDetailsPage";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState("hospitals");
-  const [selectedHospital, setSelectedHospital] = useState(null);
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [selectedHospitalForDoctor, setSelectedHospitalForDoctor] = useState(null);
   const [userBookings, setUserBookings] = useState([]);
-
-  const handleHospitalClick = (hospital) => {
-    setSelectedHospital(hospital);
-    setCurrentView("hospital-detail");
-  };
-
-  const handleDoctorClick = (doctor, hospitalId = null) => {
-    setSelectedDoctor(doctor);
-    setSelectedHospitalForDoctor(hospitalId);
-    setCurrentView("doctor-detail");
-  };
 
   const handleBooking = (bookingData) => {
     const booking = {
@@ -30,50 +17,62 @@ export default function App() {
       status: "booked"
     };
     setUserBookings(prev => [booking, ...prev]);
-  };
-
-  const handleBackToHospitals = () => {
-    setCurrentView("hospitals");
-    setSelectedHospital(null);
-    setSelectedDoctor(null);
-    setSelectedHospitalForDoctor(null);
-  };
-
-  const handleBackToHospitalDetail = () => {
-    setCurrentView("hospital-detail");
-    setSelectedDoctor(null);
-    setSelectedHospitalForDoctor(null);
+    alert(`Booking confirmed! Your token number is #${bookingData.tokenNumber}`);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
-      {currentView === "hospitals" && (
-        <HospitalList 
-          hospitals={hospitals}
-          doctors={doctors}
-          onHospitalClick={handleHospitalClick}
-          onDoctorClick={handleDoctorClick}
-          userBookings={userBookings}
-        />
-      )}
-
-      {currentView === "hospital-detail" && selectedHospital && (
-        <HospitalDetail
-          hospital={selectedHospital}
-          doctors={doctors}
-          onDoctorClick={handleDoctorClick}
-          onBack={handleBackToHospitals}
-        />
-      )}
-
-      {currentView === "doctor-detail" && selectedDoctor && (
-        <DoctorDetail
-          doctor={selectedDoctor}
-          hospitalId={selectedHospitalForDoctor}
-          onBooking={handleBooking}
-          onBack={selectedHospitalForDoctor ? handleBackToHospitalDetail : handleBackToHospitals}
-        />
-      )}
+      <Router>
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <HomePage 
+                hospitals={hospitals}
+                doctors={doctors}
+                userBookings={userBookings}
+              />
+            } 
+          />
+          <Route 
+            path="/hospital/:hospitalId" 
+            element={
+              <HospitalDetailPage
+                hospitals={hospitals}
+                doctors={doctors}
+              />
+            } 
+          />
+          <Route 
+            path="/doctor/:doctorId" 
+            element={
+              <DoctorDetailPage
+                doctors={doctors}
+                hospitals={hospitals}
+                onBooking={handleBooking}
+              />
+            } 
+          />
+          <Route 
+            path="/doctor/:doctorId/hospital/:hospitalId" 
+            element={
+              <DoctorDetailPage
+                doctors={doctors}
+                hospitals={hospitals}
+                onBooking={handleBooking}
+              />
+            } 
+          />
+          <Route 
+            path="/bookings" 
+            element={
+              <BookingDetailsPage
+                userBookings={userBookings}
+              />
+            } 
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

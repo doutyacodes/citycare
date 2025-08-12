@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function HospitalDetail({ hospital, doctors, onDoctorClick, onBack }) {
+export default function HospitalDetail({ hospital, doctors }) {
+  const navigate = useNavigate();
   const [selectedSpecialty, setSelectedSpecialty] = useState("all");
 
   const hospitalDoctors = useMemo(() => {
@@ -46,7 +48,7 @@ export default function HospitalDetail({ hospital, doctors, onDoctorClick, onBac
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 h-20">
             <button
-              onClick={onBack}
+              onClick={() => navigate('/')}
               className="p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200 flex items-center gap-2 text-gray-600 hover:text-blue-600"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,7 +198,7 @@ export default function HospitalDetail({ hospital, doctors, onDoctorClick, onBac
               return (
                 <div
                   key={doctor.id}
-                  onClick={() => onDoctorClick(doctor, hospital.id)}
+                  onClick={() => navigate(`/doctor/${doctor.id}/hospital/${hospital.id}`)}
                   className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-blue-200/50 hover:shadow-lg transition-all duration-300 cursor-pointer group hover:border-blue-300"
                 >
                   <div className="flex items-start gap-4 mb-4">

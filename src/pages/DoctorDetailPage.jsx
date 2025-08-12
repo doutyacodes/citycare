@@ -1,8 +1,28 @@
 import React, { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-export default function DoctorDetail({ doctor, hospitalId, onBooking }) {
+export default function DoctorDetailPage({ doctors, hospitals, onBooking }) {
+  const { doctorId, hospitalId } = useParams();
   const navigate = useNavigate();
+  
+  const doctor = doctors.find(d => d.id === doctorId);
+  
+  if (!doctor) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Doctor Not Found</h2>
+          <button 
+            onClick={() => navigate('/')}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Go Back Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const [selectedHospitalSchedule, setSelectedHospitalSchedule] = useState(
     hospitalId 
       ? doctor.hospitalSchedule.find(s => s.hospitalId === hospitalId) || doctor.hospitalSchedule[0]

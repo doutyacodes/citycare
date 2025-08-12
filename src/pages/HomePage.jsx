@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function HospitalList({ hospitals, doctors, userBookings }) {
+export default function HomePage({ hospitals, doctors, userBookings }) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("all");
